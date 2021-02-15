@@ -1,18 +1,45 @@
 import React, {useState, useEffect} from 'react';
-import { Text } from 'ink';
+import { Text, Box } from 'ink';
+import Gradient from 'ink-gradient';
+import BigText from 'ink-big-text';
 
-export const Counter = () => {
-	const [counter, setCounter] = useState(0);
+interface CountownProps {
+  children: React.ReactElement
+  timer: number;
+}
+
+export const Countdown = ({children, timer = 3}: CountownProps) => {
+	const [counter, setCounter] = useState(timer);
 
 	useEffect(() => {
-		const timer = setInterval(() => {
-			setCounter(previousCounter => previousCounter + 1);
-		}, 100);
+		setTimeout(() => {
+			setCounter(previousCounter => {
+        if (previousCounter === 0) return previousCounter;
 
-		return () => {
-			clearInterval(timer);
-		};
-	}, []);
+        return previousCounter - 1
+      })
+		}, 1000);
+	}, [counter]);
 
-	return <Text color="green">{counter} tests passed</Text>;
+  if (counter === 0) {
+    return <>{children}</>
+  }
+
+	return (
+    <>
+      <Box justifyContent="center" >
+        <Gradient name="rainbow">
+          <BigText text="Ink v3"/>
+        </Gradient>
+      </Box>
+      <Box justifyContent="center" >
+        <Gradient name="rainbow">
+          <BigText text="Xterm.js"/>
+        </Gradient>
+      </Box>
+      <Box justifyContent="center" >
+        <Text color="red">{counter}...</Text>
+      </Box>
+    </>
+  )
 };

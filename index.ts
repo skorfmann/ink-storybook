@@ -1,9 +1,7 @@
 import { Terminal } from 'xterm';
 import React from 'react';
 import { render } from 'ink';
-// import { Counter } from './counter'
-// import { Table } from './table'
-import { GradientText } from './gradient'
+import { App } from './app'
 import EventEmitter from 'events';
 
 
@@ -20,11 +18,11 @@ interface Stream extends EventEmitter {
   isTTY: boolean;
 }
 
-const term = new Terminal({convertEol: true, disableStdin: false, });
+const term = new Terminal({convertEol: true, disableStdin: false});
 
 const createStdout = (columns?: number): Stream => {
 	const stdout = new EventEmitter() as Stream;
-	stdout.columns = columns ?? 100;
+	stdout.columns = columns ?? 80;
   stdout.rows = 80;
   stdout.isTTY = true;
 	stdout.write = (str: string) => {
@@ -44,11 +42,12 @@ term.onData((data) => {
   stdin.emit('data', data)
 });
 
-render(React.createElement(GradientText, {}), { stdout: stdout, stderr: stdout, stdin, debug: false, patchConsole: false});
+render(React.createElement(App, {}), { stdout: stdout, stderr: stdout, stdin, debug: false, patchConsole: false});
 
 document.addEventListener("DOMContentLoaded", function(event) {
   const element = document.getElementById('terminal')
   if (element) {
     term.open(element);
+    term.focus();
   }
 });
