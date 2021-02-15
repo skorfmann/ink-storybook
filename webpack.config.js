@@ -9,7 +9,7 @@ module.exports = {
     path: pathName,
     filename: 'bundle.js',
   },
-  mode: "development",
+  mode: "production",
   resolve: {
     fallback: {
         "fs": false,
