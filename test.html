@@ -1,0 +1,24 @@
+<!doctype html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="xterm.css" />
+      <script>
+          window.process = {
+            env: {
+              FORCE_COLOR: true,
+              CI: false
+            },
+            cwd: (args) => {
+              return ''
+            },
+            stderr: {
+              isTTY: false
+            }
+          }
+      </script>
+      <script src="bundle.js"></script>
+    </head>
+    <body>
+      <div id="terminal"></div>
+    </body>
+  </html>

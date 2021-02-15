@@ -1,0 +1,44 @@
+{
+  "name": "ink-storybook",
+  "version": "0.0.1",
+  "description": "Runs Ink via Xterm.js in a browser and aims to provide something along the lines of a storybook for Ink",
+  "main": "index.js",
+  "scripts": {
+    "dev:serve": "webpack serve",
+    "compile": "tsc",
+    "build": "yarn compile && webpack"
+  },
+  "keywords": [
+    "ink",
+    "react",
+    "xtermjs",
+    "storybook"
+  ],
+  "author": "Sebastian Korfmann",
+  "license": "MPL-2.0",
+  "devDependencies": {
+    "@types/chance": "^1.1.1",
+    "@types/ink-big-text": "^1.2.0",
+    "@types/ink-gradient": "^2.0.1",
+    "@types/react": "^17.0.2",
+    "copy-webpack-plugin": "^7.0.0",
+    "module-replace-webpack-plugin": "^0.0.12",
+    "typescript": "^4.1.5",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "chance": "^1.1.7",
+    "ink": "^3.0.0",
+    "ink-big-text": "^1.2.0",
+    "ink-gradient": "^2.0.0",
+    "os-browserify": "^0.3.0",
+    "react": "16",
+    "stream-browserify": "^3.0.0",
+    "tty-browserify": "^0.0.1",
+    "xterm": "^4.10.0"
+  }
+}
